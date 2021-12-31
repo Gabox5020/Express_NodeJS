@@ -1,12 +1,18 @@
 const express = require('express');
 const app = express();
 
-app.use(express.json());
+function logger(req, res, next) {
+    console.log('Request received');
+    next();
+}
 
-app.all('/user', (req, res) => {
-    console.log('Por aqui paso');
-    res.send('finish');
-})
+app.use(express.json());
+app.use(logger);
+
+// app.all('/user', (req, res, next) => {
+//     console.log('Por aqui paso');
+//     next();
+// });
 
 app.get('/user', (req, res) => {
     res.json({
