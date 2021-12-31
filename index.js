@@ -3,6 +3,11 @@ const app = express();
 
 app.use(express.json());
 
+app.all('/user', (req, res) => {
+    console.log('Por aqui paso');
+    res.send('finish');
+})
+
 app.get('/user', (req, res) => {
     res.json({
         username: 'Cameron',
@@ -16,12 +21,13 @@ app.post('/user/:id', (req, res)=> {
     res.send('POST REQUEST RECEIVED');
 });
 
-app.put('/contact', (req, res)=> {
-    res.send('UPDATE REQUEST RECEIVED');
+app.put('/user/id', (req, res)=> {
+    console.log(req.body);
+    res.send(`User ${req.params.id} updated`);
 });
 
-app.delete('/test', (req, res )=> {
-    res.send('<h1>DELETE REQUEST RECEIVED</h1>');
+app.delete('/user/:userId', (req, res ) => {
+    res.send(`User ${req.params.userId} deleted`);
 });
 
 app.listen(5000, () => {
