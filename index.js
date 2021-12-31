@@ -18,7 +18,8 @@ app.use(morgan('dev'));
 // });
 
 app.get('/', (req, res) => {
-    res.render('index.ejs');
+    const data = [{name: 'john'}, {name: 'joe'}, {name: 'cameron'}, {name: 'ryan'}];
+    res.render('index.ejs', {people: data});
 });
 
 app.get('/user', (req, res) => {

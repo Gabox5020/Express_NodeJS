@@ -9,6 +9,15 @@
     <body>
 
         <h1>EJS</h1>
-    
+
+        <ul>
+
+            <% people.forEach(function (person) { %>
+                <li><%= person.name %></li>
+            <% }) %>
+
+        </ul>
+
+
     </body>
 </html>
