@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 
 function logger(req, res, next) {
-    console.log('Request received');
+    console.log(`Route Received: ${req.protocol}://${req.get('host')}${req.originalUrl}`);
     next();
 }
 
