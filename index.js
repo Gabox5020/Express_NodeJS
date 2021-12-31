@@ -2,14 +2,24 @@ const express = require('express');
 const morgan = require('morgan');
 const app = express();
 
+// Settings
+app.set('appName', 'Fazt Express Tutorial');
+app.set('port', 3000);
+app.set('view engine', 'ejs');
 
+// Middlewares
 app.use(express.json());
 app.use(morgan('dev'));
 
+// Routes
 // app.all('/user', (req, res, next) => {
 //     console.log('Por aqui paso');
 //     next();
 // });
+
+app.get('/', (req, res) => {
+    res.render('index.ejs');
+});
 
 app.get('/user', (req, res) => {
     res.json({
@@ -35,6 +45,7 @@ app.delete('/user/:userId', (req, res ) => {
 
 app.use(express.static('public'));
 
-app.listen(5000, () => {
-    console.log('server on port 5000');
+app.listen(app.get('port'), () => {
+    console.log(app.get('appName'));
+    console.log('server on port', app.get('port'));
 });
